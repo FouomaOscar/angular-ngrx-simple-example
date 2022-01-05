@@ -1,10 +1,23 @@
-<!-- <app-my-counter></app-my-counter>
-<div>Current Count: {{ count$ | async }}</div> -->
-
-<div style="text-align:center">
-    <h1>
-        Welcome to {{ title }}!
-    </h1>
-</div>
-<app-customer-view></app-customer-view>
-<app-customer-add></app-customer-add>
+<table>
+    <tr>
+        <th>id</th>
+        <th>titre</th>
+        <th>auteur</th>
+        <th>action</th>
+    </tr>
+    <tr *ngFor="let post of posts$ | async">
+        <td>{{post.id}}</td>
+        <td>{{post.title}}</td>
+        <td>{{post.author}}</td>
+        <td> <button (click)="deletePost(post.id)">Supprimer</button></td>
+    </tr>
+</table>
+<form [formGroup]="postForm" (ngSubmit)="createPost()">
+    <div>
+        <input type="text" class="form-control" formControlName="title">
+    </div>
+    <div>
+        <input type="text" class="form-control" formControlName="author">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading">Créer la publication</button>
+</form>
