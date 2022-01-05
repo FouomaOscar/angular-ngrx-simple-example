@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Post, PostDto } from './post';
+import { Post, PostDto } from './models/post';
 import { addPost, deletePostItemSuccess, loadPosts } from './store/post/post.actions';
 import { selectPostItems } from './store/post/post.selectors';
 import { PostService } from './store/post/post.service';
@@ -59,8 +59,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.postService.getAllPosts().subscribe(
-      (posts: Post[]) => this.store.dispatch(loadPosts({ posts }))
-    );
+    this.store.dispatch(loadPosts());
+    // this.postService.getAllPosts().subscribe(
+    //   (posts: Post[]) =>
+    // );
   }
 }

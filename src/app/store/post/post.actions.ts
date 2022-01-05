@@ -1,8 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { Post } from 'src/app/post';
+import { Post } from 'src/app/models/post';
 
 export const loadPosts = createAction(
   '[Post] Load Posts',
+  // props<{ posts: Post[] }>()
+);
+
+export const loadPostsSuccess = createAction(
+  '[Post] Load Posts Success',
   props<{ posts: Post[] }>()
 );
 
@@ -16,10 +21,10 @@ export const deletePostItemSuccess = createAction(
   props<{ postId: number }>()
 );
 
-export const loadPostsSuccess = createAction(
-  '[Post] Load Posts Success',
-  props<{ data: any }>()
-);
+// export const loadPostsSuccess = createAction(
+//   '[Post] Load Posts Success',
+//   props<{ data: any }>()
+// );
 
 export const loadPostsFailure = createAction(
   '[Post] Load Posts Failure',

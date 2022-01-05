@@ -13,12 +13,12 @@ export class PostEffects {
 
 
   loadPosts$ = createEffect(() => this.actions$.pipe(
-    ofType('[Post] Load Posts'),
+    ofType(PostActions.loadPosts),
     mergeMap(() => this.postService.getAllPosts()
       .pipe(
         map(posts => {
           console.log('test');
-          return ({ type: '[Posts API] Posts Loaded Success', payload: posts });
+          return PostActions.loadPostsSuccess({posts});
         }),
         catchError(() => of({ type: '[Posts API] Posts Loaded Error' }))
       ))
